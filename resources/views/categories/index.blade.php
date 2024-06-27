@@ -10,20 +10,28 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    <a href="{{ route('categories.create') }}">Add new category</a>
 {{--                    {{ __("You're logged in!") }}--}}
                     <table>
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th></th>
+                            <th style="border: 1px solid black">Name</th>
+                            <th colspan="2" style="border: 1px solid black">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($categories as $category)
                             <tr>
-                                <td>{{ $category->name }}</td>
-                                <td>
+                                <td style="border: 1px solid black">{{ $category->name }}</td>
+                                <td style="border: 1px solid black">
                                     <a href="{{ route('categories.edit', $category) }}">Edit</a>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <form method="POST" action="{{ route('categories.destroy', $category) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
