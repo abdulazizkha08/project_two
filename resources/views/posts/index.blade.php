@@ -17,6 +17,7 @@
                         <thead>
                         <tr>
                             <th style="border: 1px solid black">Title</th>
+                            <th style="border: 1px solid black">Text</th>
                             <th style="border: 1px solid black">Category</th>
                             <th colspan="2" style="border: 1px solid black">Action</th>
                         </tr>
@@ -25,6 +26,7 @@
                         @foreach($posts as $post)
                             <tr>
                                 <td style="border: 1px solid black">{{ $post->title }}</td>
+                                <td style="border: 1px solid black">{{ $post->text }}</td>
                                 <td style="border: 1px solid black">{{ $post->category->name }}</td>
                                 <td style="border: 1px solid black; background-color: dodgerblue;">
                                     <a href="{{ route('posts.edit', $post) }}">Edit</a>

@@ -11,6 +11,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <a href="{{ route('categories.create') }}">Add new category</a>
+                    <br>
+                    <br>
 {{--                    {{ __("You're logged in!") }}--}}
                     <table>
                         <thead>
