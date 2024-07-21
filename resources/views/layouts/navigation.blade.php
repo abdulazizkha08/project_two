@@ -5,29 +5,88 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('main') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
+                <!-- Page Heading -->
+{{--                @isset($header)--}}
+{{--                    <header class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">--}}
+{{--                        <div class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">--}}
+{{--                            {{ $header }}--}}
+{{--                        </div>--}}
+{{--                    </header>--}}
+{{--                @endisset--}}
+
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    @if(auth()->user()->is_admin)
-                        <a href="{{ route('categories.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            Categories
-                        </a>
-                        <a href="{{ route('posts.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            Posts
-                        </a>
+                    @if (Route::has('login'))
+                        <x-nav-link :href="route('main')" :active="request()->routeIs('main')">
+                            {{ __('Market') }}
+                        </x-nav-link>
+                        @auth
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-nav-link>
+
+                            <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                                {{ __('Categories') }}
+                            </x-nav-link>
+
+                            <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                                {{ __('Posts') }}
+                            </x-nav-link>
+
+                        <nav class="-mx-3 flex flex-1 justify-end">
+
+                        @else
+                            <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                                {{ __('Log in') }}
+                            </x-nav-link>
+
+{{--                            <a--}}
+{{--                                href="{{ route('login') }}"--}}
+{{--                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"--}}
+{{--                            >--}}
+{{--                                Log in--}}
+{{--                            </a>--}}
+
+                            @if (Route::has('register'))
+
+                                <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                                    {{ __('Register') }}
+                                </x-nav-link>
+
+{{--                                <a--}}
+{{--                                    href="{{ route('register') }}"--}}
+{{--                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"--}}
+{{--                                >--}}
+{{--                                    Register--}}
+{{--                                </a>--}}
+                            @endif
+                        </nav>
+                        @endauth
                     @endif
+
+
+{{--                    @if(auth()->user()->is_admin)--}}
+{{--                        <a href="{{ route('categories.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">--}}
+{{--                            Categories--}}
+{{--                        </a>--}}
+{{--                        <a href="{{ route('posts.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">--}}
+{{--                            Posts--}}
+{{--                        </a>--}}
+{{--                        @if(auth()->user()->0)--}}
+{{--                            --}}
+{{--                    @endif--}}
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
+            @if (Route::has('login'))
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                @auth
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -58,6 +117,7 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                @endauth
             </div>
 
             <!-- Hamburger -->
@@ -69,6 +129,7 @@
                     </svg>
                 </button>
             </div>
+            @endif
         </div>
     </div>
 
@@ -81,13 +142,17 @@
         </div>
 
         <!-- Responsive Settings Options -->
+        @if (Route::has('login'))
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
+                @auth
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                @endauth
             </div>
 
             <div class="mt-3 space-y-1">
+                @auth()
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
@@ -102,7 +167,9 @@
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+                @endauth
             </div>
         </div>
+        @endif
     </div>
 </nav>
