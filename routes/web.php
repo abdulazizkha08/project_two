@@ -6,8 +6,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('main');
-})->name('main');
+    return view('market');
+})->name('market');
+
+Route::get('/overview', function () {
+    return view('overview');
+})->name('overview');
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');

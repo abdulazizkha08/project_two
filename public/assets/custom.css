@@ -1,0 +1,14 @@
+.header-c-style{
+    margin-top: 2px;
+    padding: 0.1rem 0;
+}
+
+.footer-c-style{
+    padding: 1rem 0 !important;
+}
+
+@media screen and (min-width: 1400px) {
+    .custom-width{
+        max-width: 1800px;
+    }
+}
