@@ -39,47 +39,12 @@
                                 {{ __('Posts') }}
                             </x-nav-link>
 
-                        @else
-{{--                            <nav class="-mx-3 flex flex-1 justify-end">--}}
-{{--                                <x-nav-link :href="route('login')" :active="request()->routeIs('login')">--}}
-{{--                                    {{ __('Log in') }}--}}
-{{--                                </x-nav-link>--}}
+                            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                                {{ __('Users') }}
+                            </x-nav-link>
 
-{{--                            <a--}}
-{{--                                href="{{ route('login') }}"--}}
-{{--                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"--}}
-{{--                            >--}}
-{{--                                Log in--}}
-{{--                            </a>--}}
-
-{{--                                @if (Route::has('register'))--}}
-
-{{--                                    <x-nav-link :href="route('register')" :active="request()->routeIs('register')">--}}
-{{--                                        {{ __('Register') }}--}}
-{{--                                    </x-nav-link>--}}
-
-{{--    --}}{{--                                <a--}}
-{{--    --}}{{--                                    href="{{ route('register') }}"--}}
-{{--    --}}{{--                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"--}}
-{{--    --}}{{--                                >--}}
-{{--    --}}{{--                                    Register--}}
-{{--    --}}{{--                                </a>--}}
-{{--                                @endif--}}
-{{--                            </nav>--}}
                         @endauth
                     @endif
-
-
-{{--                    @if(auth()->user()->is_admin)--}}
-{{--                        <a href="{{ route('categories.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">--}}
-{{--                            Categories--}}
-{{--                        </a>--}}
-{{--                        <a href="{{ route('posts.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">--}}
-{{--                            Posts--}}
-{{--                        </a>--}}
-{{--                        @if(auth()->user()->0)--}}
-{{--                            --}}
-{{--                    @endif--}}
                 </div>
             </div>
 
@@ -89,7 +54,7 @@
                 @auth
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <button class="btn btn-outline-dark inline-flex items-center">
                                         <div>{{ Auth::user()->name }}</div>
 
                                         <div class="ms-1">
@@ -120,7 +85,9 @@
                 @else
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <button class="btn btn-outline-dark inline-flex items-center">
+{{--                                        class="px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150" -->--}}
+
                                         Authorization
 
                                         <div class="ms-1">
@@ -160,6 +127,7 @@
 
         <!-- Cart -->
             <div class="hidden sm:flex sm:items-center sm:ms-6" id="navbarSupportedContent">
+                @csrf
                 <form class="d-flex">
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>

@@ -3,14 +3,14 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\MarketController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('market');
-})->name('market');
+Route::get('/', [MarketController::class, 'index'])->name('market');
 
 Route::get('/overview', function () {
-    return view('overview');
+    return view('products/index');
 })->name('overview');
 
 //Route::get('/dashboard', function () {
@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('is_admin')->group(function () {
         Route::resource('categories', CategoryController::class);
         Route::resource('posts', PostController::class);
+        Route::resource('users', UsersController::class);
     });
 
 });
