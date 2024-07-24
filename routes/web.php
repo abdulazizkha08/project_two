@@ -5,13 +5,12 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\MarketController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MarketController::class, 'index'])->name('market');
 
-Route::get('/overview', function () {
-    return view('products/index');
-})->name('overview');
+Route::get('/overview/{product}', [ProductController::class, 'show'])->name('overview');
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
