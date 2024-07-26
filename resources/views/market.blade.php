@@ -34,11 +34,11 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ $product->name }}</h5>
                                     <!-- Product price-->
-                                    ${{ $product->price }}
+                                    {{ $product->price }} UZS
                                 </div>
                                 <div class="text-center">
                                     <!-- Seller name -->
-                                    {{ $product->user_id }}
+                                    {{ $product->user->name }}
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -68,8 +68,8 @@
 {{--                                        <div class="bi-star-fill"></div>--}}
 {{--                                    </div>--}}
 {{--                                    <!-- Product price-->--}}
-{{--                                    <span class="text-muted text-decoration-line-through">$20.00</span>--}}
-{{--                                    $18.00--}}
+{{--                                    <span class="text-muted text-decoration-line-through">20.00 UZS</span>--}}
+{{--                                    18.00 UZS--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                            <!-- Product actions-->--}}
@@ -90,8 +90,8 @@
 {{--                                    <!-- Product name-->--}}
 {{--                                    <h5 class="fw-bolder">Sale Item</h5>--}}
 {{--                                    <!-- Product price-->--}}
-{{--                                    <span class="text-muted text-decoration-line-through">$50.00</span>--}}
-{{--                                    $25.00--}}
+{{--                                    <span class="text-muted text-decoration-line-through">50.00 UZS</span>--}}
+{{--                                    25.00 UZS--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                            <!-- Product actions-->--}}
@@ -118,7 +118,7 @@
 {{--                                        <div class="bi-star-fill"></div>--}}
 {{--                                    </div>--}}
 {{--                                    <!-- Product price-->--}}
-{{--                                    $40.00--}}
+{{--                                    40.00 UZS--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                            <!-- Product actions-->--}}
@@ -139,8 +139,8 @@
 {{--                                    <!-- Product name-->--}}
 {{--                                    <h5 class="fw-bolder">Sale Item</h5>--}}
 {{--                                    <!-- Product price-->--}}
-{{--                                    <span class="text-muted text-decoration-line-through">$50.00</span>--}}
-{{--                                    $25.00--}}
+{{--                                    <span class="text-muted text-decoration-line-through">50.00 UZS</span>--}}
+{{--                                    25.00 UZS--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                            <!-- Product actions-->--}}
@@ -159,7 +159,7 @@
 {{--                                    <!-- Product name-->--}}
 {{--                                    <h5 class="fw-bolder">Fancy Product</h5>--}}
 {{--                                    <!-- Product price-->--}}
-{{--                                    $120.00 - $280.00--}}
+{{--                                    120.00 UZS - 280.00 UZS--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                            <!-- Product actions-->--}}
@@ -188,8 +188,8 @@
 {{--                                        <div class="bi-star-fill"></div>--}}
 {{--                                    </div>--}}
 {{--                                    <!-- Product price-->--}}
-{{--                                    <span class="text-muted text-decoration-line-through">$20.00</span>--}}
-{{--                                    $18.00--}}
+{{--                                    <span class="text-muted text-decoration-line-through">20.00 UZS</span>--}}
+{{--                                    18.00 UZS--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                            <!-- Product actions-->--}}
@@ -216,7 +216,7 @@
 {{--                                    <div class="bi-star-fill"></div>--}}
 {{--                                </div>--}}
 {{--                                <!-- Product price-->--}}
-{{--                                $40.00--}}
+{{--                                40.00 UZS--}}
 {{--                            </div>--}}
 {{--                        </div>--}}
 {{--                        <!-- Product actions-->--}}
