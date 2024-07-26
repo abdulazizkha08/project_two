@@ -3,23 +3,21 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\MarketController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MarketController::class, 'index'])->name('market');
 
-Route::get('/overview/{product}', [ProductController::class, 'show'])->name('overview');
-
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/overview/{product}', [CProductController::class, 'show'])->name('overview');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+//    Route::resource('myshop', [SProductController::class, 'index']);
 
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -28,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('is_admin')->group(function () {
         Route::resource('categories', CategoryController::class);
         Route::resource('posts', PostController::class);
-        Route::resource('users', UsersController::class);
+        Route::resource('shops', ShopsController::class);
     });
 
 });

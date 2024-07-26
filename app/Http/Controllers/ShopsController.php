@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class ShopsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class UsersController extends Controller
     {
        $users = user::all();
 
-       return view('users.index', compact('users'));
+       return view('shops.index', compact('users'));
     }
 
     /**
@@ -23,7 +22,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('shops.create');
     }
 
     /**
@@ -38,13 +37,13 @@ class UsersController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
 
-            return redirect()->route('users.index');
+            return redirect()->route('shops.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Shop $shop)
+    public function show(User $user)
     {
         //
     }
@@ -54,7 +53,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('shops.edit', compact('user'));
     }
 
     /**
@@ -68,13 +67,13 @@ class UsersController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        return redirect()->route('users.index');
+        return redirect()->route('shops.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Shop $shop)
+    public function destroy(User $user)
     {
         //
     }

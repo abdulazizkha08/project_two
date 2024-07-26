@@ -23,7 +23,7 @@
                 <button class="btn btn-outline-primary" type="button">Search</button>
             </div>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
-               @foreach($products as $product)
+               @foreach($products as $index => $product)
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
@@ -34,7 +34,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ $product->name }}</h5>
                                     <!-- Product price-->
-                                    {{ $product->price }} UZS
+                                    {{ $formattedPrices[$index] }} UZS
                                 </div>
                                 <div class="text-center">
                                     <!-- Seller name -->

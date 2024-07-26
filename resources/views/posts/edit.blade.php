@@ -2,7 +2,7 @@
     $(document).ready(function () {
         $('#name').select2({
             ajax: {
-                url: '{{ route('client.products.json') }}',
+                url: '{{ route('buyer.products.json') }}',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {

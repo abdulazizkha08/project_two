@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ route('users.create') }}">Add new User</a>
+                    <a href="{{ route('shops.create') }}">Add new Shop</a>
                     <br>
                     <br>
                     <table>
@@ -27,10 +27,10 @@
                                 <td style="border: 1px solid black">{{ $user->phone }}</td>
                                 <td style="border: 1px solid black">{{ $user->email }}</td>
                                 <td style="border: 1px solid black; background-color: dodgerblue;">
-                                    <a href="{{ route('users.edit', $user) }}">Edit</a>
+                                    <a href="{{ route('shops.edit', $user) }}">Edit</a>
                                 </td>
                                 <td style="border: 1px solid black; background-color: orangered;">
-                                    <form method="POST" action="{{ route('users.destroy', $user) }}">
+                                    <form method="POST" action="{{ route('shops.destroy', $user) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>

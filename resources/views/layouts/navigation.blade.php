@@ -23,10 +23,18 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @if (Route::has('login'))
-                        <x-nav-link :href="route('market')" :active="request()->routeIs('market')">
-                            {{ __('Market') }}
-                        </x-nav-link>
+
+                            <x-nav-link :href="route('market')" :active="request()->routeIs('market')">
+                                {{ __('Market') }}
+                            </x-nav-link>
+
                         @auth
+
+                            <x-nav-link :href="route('shops.index')" :active="request()->routeIs('shops.index')">
+                                {{ __('My Shop') }}
+                            </x-nav-link>
+
+                        @if(auth()->user()->is_admin)
                             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
                             </x-nav-link>
@@ -39,9 +47,10 @@
                                 {{ __('Posts') }}
                             </x-nav-link>
 
-                            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                                {{ __('Users') }}
+                            <x-nav-link :href="route('shops.index')" :active="request()->routeIs('shops.index')">
+                                {{ __('Shops') }}
                             </x-nav-link>
+                            @endif
 
                         @endauth
                     @endif
