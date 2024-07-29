@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Market.blade') }}
+            {{ $user->name }}.shop.blade
         </h2>
     </x-slot>
 
@@ -23,7 +23,7 @@
                 <button class="btn btn-outline-primary" type="button">Search</button>
             </div>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
-               @foreach($products as $index => $product)
+               @foreach($products as $product)
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
@@ -34,11 +34,11 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ $product->name }}</h5>
                                     <!-- Product price-->
-                                    {{ $formattedPrices[$index] }} UZS
+                                    {{ $product->price }} UZS
                                 </div>
                                 <div class="text-center">
                                     <!-- Seller name -->
-                                    <a href="{{ route('user.products', $product->user->id) }}">{{ $product->user->name }}</a>  {{--href="{{ route('shop', $user) }}"--}}
+                                    <a href="">{{ $product->user->name }}</a>  {{--href="{{ route('overview', $user) }}"--}}
                                 </div>
                             </div>
                             <!-- Product actions-->

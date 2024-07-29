@@ -12,29 +12,21 @@
                 </div>
 
                 <!-- Page Heading -->
-{{--                @isset($header)--}}
-{{--                    <header class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">--}}
-{{--                        <div class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">--}}
-{{--                            {{ $header }}--}}
-{{--                        </div>--}}
-{{--                    </header>--}}
-{{--                @endisset--}}
+                @isset($header)
+                    <header class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <div class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endisset
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @if (Route::has('login'))
-
-                            <x-nav-link :href="route('market')" :active="request()->routeIs('market')">
-                                {{ __('Market') }}
-                            </x-nav-link>
-
+                        <x-nav-link :href="route('market')" :active="request()->routeIs('market')">
+                            {{ __('Main') }}
+                        </x-nav-link>
                         @auth
-
-                            <x-nav-link :href="route('shops.index')" :active="request()->routeIs('shops.index')">
-                                {{ __('My Shop') }}
-                            </x-nav-link>
-
-                        @if(auth()->user()->is_admin)
                             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
                             </x-nav-link>
@@ -47,10 +39,9 @@
                                 {{ __('Posts') }}
                             </x-nav-link>
 
-                            <x-nav-link :href="route('shops.index')" :active="request()->routeIs('shops.index')">
-                                {{ __('Shops') }}
+                            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                                {{ __('Users') }}
                             </x-nav-link>
-                            @endif
 
                         @endauth
                     @endif

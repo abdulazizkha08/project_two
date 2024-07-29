@@ -1,93 +1,48 @@
-<script>
-    $(document).ready(function () {
-        $('#name').select2({
-            ajax: {
-                url: '{{ route('buyer.products.json') }}',
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        search: params.term
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
-                },
-                cache: true
-            },
-            placeholder: placeholder,
-            minimumInputLength: 2,
-            templateResult: formatOption,
-            templateSelection: formatOptionSelection
-        });
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Post Edit') }}
+        </h2>
+    </x-slot>
 
-        function formatOption(option) {
-            if (!option.id) {
-                return option.name;
-            }
-            let option_html = $('<div></div>');
-            option_html.text(option.name + " - " + numberFormat(option.amount) + " UZS " /*+ option.measurement.short*/);
-            return option_html;
-        }
-
-        function formatOptionSelection(option) {
-            var table = $('#cart');
-            table.empty();
-            var short = '';
-            if (option.measurement) {
-                short = option.measurement.short;
-            }
-            var amount = '';
-            if (option.amount) {
-                amount = numberFormat(option.amount)
-            }
-            table.append("" +
-                "<td style='text-align: left'>#</td>" +
-                "<td style='text-align: left'>" + option.bar_code + "</td>" +
-                "<td style='text-align: left'>" + option.name + "</td>" +
-                "<td style='text-align: right' id='amount' data-source='" + amount + "'>" + amount + " сум</td>" +
-                "<td style='text-align: right;'><input style='text-align: right; width: 100%;' type='number' id='add_qty' name='qty_'" + option.id + " " + "onchange='getTotal(this)' value='1' min='1'></td>" +
-                "<td style='text-align: right'>" + short + "</td>" +
-                "<td style='text-align: right' id='total_amount'>" + amount + " сум</td>" +
-                "<td>" +
-                "<input style='padding:.0rem .75rem' type='button' id='add_product' name='add_product' class='btn btn-primary' data-id='" + option.id + "' onclick='addProduct()' value='+'>" +
-                " <button style='padding:.0rem .75rem' class='btn btn-danger' data-id='" + option.id + "' type='submit' onclick='remove(this)'>x</button></td>" +
-                "");
-        }
-
-        function numberFormat(input) {
-            try {
-                var amount = parseInt(input);
-                if (isNaN(amount)) {
-                    return 0;
-                }
-            } catch (error) {
-                return 0;
-            }
-            amount = amount / 100;
-            return formatNumber(amount);
-        }
-
-        function formatNumber(number) {
-            const numberString = number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-            return numberString.replace(".", ",");
-        }
-
-        function calculateTotal(input) {
-            var row = input.parentNode.parentNode;
-            var quantity = parseFloat(input.value);
-            var amount = parseFloat(row.cells[4].innerText);
-            var total = quantity * amount;
-            var totalCell = row.cells[6];
-            totalCell.innerText = total.toFixed(2);
-        }
-    });
-
-
-    $("#name").select2({
-        placeholder: "Поиск товара по названию или артикулу",
-        allowClear: true
-    });
-</script>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <form method="POST" action="{{ route('posts.update', $post) }}">
+                        @csrf
+                        @method('PUT')
+                        <div>
+                            <div>
+                                <label for="title">Title:</label>
+                            </div>
+                            <input type="text" name="title" id="title" value="{{ $post->title }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                        </div>
+                        <div>
+                            <div>
+                                <label for="text">Text:</label>
+                            </div>
+                            <textarea name="text" id="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ $post->text }}</textarea>
+                        </div>
+                        <div>
+                            <div>
+                                <label for="category_id">Category:</label>
+                            </div>
+                            <select name="category_id" id="category_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" @selected($category->id == $post->category_id)>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                Save
+                            </button>
+                        </div>
+                        {{--                        {{ $category->name }}--}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
