@@ -38,12 +38,12 @@
                                 </div>
                                 <div class="text-center">
                                     <!-- Seller name -->
-                                    <a href="{{ route('user.products', $product->user->id) }}">{{ $product->user->name }}</a>  {{--href="{{ route('shop', $user) }}"--}}
+                                    <a href="{{ route('user.products', $product->user->id) }}">{{ $product->user->name }}</a>
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('overview', $product) }}">Overview</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('product.overview', $product) }}">Overview</a></div>
                             </div>
                         </div>
                     </div>
