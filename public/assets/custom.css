@@ -7,6 +7,14 @@
     padding: 1rem 0 !important;
 }
 
+.btn-market{
+    width: 8%;
+}
+
+.btn-search{
+    width: 8%;
+}
+
 @media screen and (min-width: 1400px) {
     .market-width{
         max-width: 1800px;

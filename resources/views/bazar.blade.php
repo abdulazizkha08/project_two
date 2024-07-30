@@ -5,12 +5,21 @@
         </h2>
     </x-slot>
 
+    <!-- Header-->
+    <header class="bg-dark header-c-style">
+        <div class="container px-4 px-lg-5 my-1">
+            <div class="text-center text-white">
+                <h1 class="display-7 fw-bolder">Shop in style</h1>
+                <p class=" fw-normal text-white-50 mb-0">With this shop homepage template</p>
+            </div>
+        </div>
+    </header>
     <!-- Section-->
-    <section class="py-5">
+    <section class="py-3">
         <div class="container px-4 px-lg-5 market-width">
             <div class="input-group mb-3">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                    Change Bazar
+                <button type="button" class="btn btn-primary btn-market dropdown-toggle" data-bs-toggle="dropdown">
+                    {{ $bazar->name }}
                 </button>
                 <ul class="dropdown-menu">
                 @foreach($bazars as $bazar)
@@ -18,7 +27,7 @@
                 @endforeach
                 </ul>
                 <input type="text" class="form-control" placeholder="Search items here">
-                <button class="btn btn-outline-primary" type="button">Search</button>
+                <button class="btn btn-outline-primary btn-search" type="button">Search</button>
             </div>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
                @foreach($users as $user)
