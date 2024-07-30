@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bazar;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ShopsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       $users = user::all();
+       $shops = user::all();
 
-       return view('shops.index', compact('users'));
+       return view('shops.index', compact('shops'));
     }
 
     /**
@@ -22,7 +23,8 @@ class ShopsController extends Controller
      */
     public function create()
     {
-        return view('shops.create');
+        $bazars = Bazar::all();
+        return view('shops.create', compact('bazars'));
     }
 
     /**
@@ -51,17 +53,17 @@ class ShopsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(User $shop)
     {
-        return view('shops.edit', compact('user'));
+        return view('shops.edit', compact('shop'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $shop)
     {
-        $user->update([
+        $shop->update([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
@@ -73,7 +75,7 @@ class ShopsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(User $shop)
     {
         //
     }

@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'phone',
+        'bazar_id',
         'email',
         'password',
     ];
@@ -50,5 +51,10 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function bazar()
+    {
+        return $this->belongsTo(Bazar::class);
     }
 }

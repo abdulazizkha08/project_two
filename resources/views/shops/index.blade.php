@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Users') }}
+            {{ __('Shops') }}
         </h2>
     </x-slot>
 
@@ -21,16 +21,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($shops as $shop)
                             <tr>
-                                <td style="border: 1px solid black">{{ $user->name }}</td>
-                                <td style="border: 1px solid black">{{ $user->phone }}</td>
-                                <td style="border: 1px solid black">{{ $user->email }}</td>
+                                <td style="border: 1px solid black">{{ $shop->name }}</td>
+                                <td style="border: 1px solid black">{{ $shop->phone }}</td>
+                                <td style="border: 1px solid black">{{ $shop->email }}</td>
                                 <td style="border: 1px solid black; background-color: dodgerblue;">
-                                    <a href="{{ route('shops.edit', $user) }}">Edit</a>
+                                    <a href="{{ route('shops.edit', $shop) }}">Edit</a>
                                 </td>
                                 <td style="border: 1px solid black; background-color: orangered;">
-                                    <form method="POST" action="{{ route('shops.destroy', $user) }}">
+                                    <form method="POST" action="{{ route('shops.destroy', $shop) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>

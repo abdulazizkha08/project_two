@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Bazar;
 use App\Helpers\ProductHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +13,7 @@ class MarketController extends Controller
 {
     public function index()
     {
+        $bazars = Bazar::all();
         $users = User::all();
         $products = Product::when(request('product_id'), function ($query) {
             $query->where('product_id', request('product_id'));
@@ -23,6 +25,6 @@ class MarketController extends Controller
         // Format the prices using the helper class
         $formattedPrices = ProductHelper::formatPrices($prices);
 
-        return view('market', compact('users', 'products', 'formattedPrices'));
+        return view('market', compact('users', 'products', 'formattedPrices', 'bazars'));
     }
 }

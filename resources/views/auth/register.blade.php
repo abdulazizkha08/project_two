@@ -16,6 +16,17 @@
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 
+        <!-- Bazar -->
+        <div class="mt-4">
+            <x-input-label for="bazar_id" :value="__('Bazar type')" />
+            <select name="bazar_id" id="bazar_id" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required autofocus autocomplete="bazar_id">
+                @foreach($bazars as $bazar)
+                    <option value="{{ $bazar->id }}">{{ $bazar->name }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('bazar_id')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />

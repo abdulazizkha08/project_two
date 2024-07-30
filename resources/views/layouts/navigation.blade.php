@@ -30,18 +30,21 @@
                             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
                             </x-nav-link>
+                            @if(auth()->user()->is_admin)
 
-                            <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
-                                {{ __('Categories') }}
-                            </x-nav-link>
+                                <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                                    {{ __('Categories') }}
+                                </x-nav-link>
 
-                            <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                                {{ __('Posts') }}
-                            </x-nav-link>
+                                <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                                    {{ __('Posts') }}
+                                </x-nav-link>
 
-                            <x-nav-link :href="route('shops.index')" :active="request()->routeIs('shops.index')">
-                                {{ __('Shops') }}
-                            </x-nav-link>
+                                <x-nav-link :href="route('shops.index')" :active="request()->routeIs('shops.index')">
+                                    {{ __('Shops') }}
+                                </x-nav-link>
+
+                            @endif
 
                         @endauth
                     @endif

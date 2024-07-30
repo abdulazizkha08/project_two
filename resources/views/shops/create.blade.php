@@ -31,6 +31,16 @@
                         </div>
                         <div>
                             <div>
+                                <select class="form-select">
+                                    @foreach($bazars as $bazar)
+                                        <option>{{ $bazars->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <input type="text" name="email" id="email" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                        </div>
+                        <div>
+                            <div>
                                 <label for="name">Password:</label>
                             </div>
                             <input type="password" name="password" id="password" value="123456789" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
