@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Helpers\ProductHelper;
-use App\Models\Product;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index(Product $product)
+    public function index()
     {
         $cart = session()->get('cart', []);
+
         return view('cart.index', compact('cart'));
     }
 

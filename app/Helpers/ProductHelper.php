@@ -2,8 +2,6 @@
 
 namespace App\Helpers;
 
-use App\Models\Product;
-
 class ProductHelper
 {
     public static function formatPrices($prices, $decimals = 2)
