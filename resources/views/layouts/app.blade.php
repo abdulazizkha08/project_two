@@ -37,6 +37,12 @@
                 {{ $slot }}
             </main>
 {{--        </div>--}}
+        <!-- Footer-->
+        <footer class="bg-dark footer-c-style">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+            </div>
+        </footer>
     </body>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

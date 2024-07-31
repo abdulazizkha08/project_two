@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="mx-auto px-5 sm:px-6 lg:px-8 border-b-2">
         <div class="flex justify-between h-16">
         <!-- Nav links -->
             <div class="flex">
@@ -53,23 +53,10 @@
 
         <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <!-- Search bar -->
-                    <div class="input-group">
-                        <button type="button" class="btn btn-outline-dark inline-flex items-center btn-market dropdown-toggle" data-bs-toggle="dropdown">
-                            Go to Bazar
-                        </button>
-                        <ul class="dropdown-menu">
-                            @foreach($bazars as $bazar)
-                                <li><a class="dropdown-item" href="{{ route('bazar.products', $bazar) }}">{{ $bazar->name }}</a></li>
-                            @endforeach
-                        </ul>
-                        <input type="text" class="" placeholder="Search items here">
-                        <button class="btn btn-outline-dark btn-search" type="button"><i class="fa fa-search"></i></button>
-                    </div>
                 <!-- Cart -->
-{{--                @if(Route::has('login'))--}}
-{{--                    @auth()--}}
-{{--                        @if(auth()->user()->is_admin)--}}
+                @if(Route::has('login'))
+                    @auth()
+                        @if(auth()->user()->is_admin)
                             <div class="hidden sm:flex sm:items-center sm:ms-6" id="navbarSupportedContent">
                                 @csrf
                                 <form class="d-flex">
@@ -80,9 +67,9 @@
                                     </a>
                                 </form>
                             </div>
-{{--                        @endif--}}
-{{--                    @endauth--}}
-{{--                @endif--}}
+                        @endif
+                    @endauth
+                @endif
                 <!-- Auth Dropdown -->
                 <div class="sm:ms-6">
                     @if (Route::has('login'))
