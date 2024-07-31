@@ -18,18 +18,19 @@
     <!-- Section-->
     <section class="py-3">
         <div class="container px-4 px-lg-5 market-width">
-            <div class="input-group mb-3">
-                <button type="button" class="btn btn-outline-primary btn-market dropdown-toggle" data-bs-toggle="dropdown">
-                    Go to Bazar
-                </button>
-                <ul class="dropdown-menu">
-                @foreach($bazars as $bazar)
-                    <li><a class="dropdown-item" href="{{ route('bazar.products', $bazar) }}">{{ $bazar->name }}</a></li>
-                @endforeach
-                </ul>
-                <input type="text" class="form-control" placeholder="Search items here">
-                <button class="btn btn-outline-primary btn-search" type="button">Search</button>
-            </div>
+            <!-- Search bar -->
+{{--            <div class="input-group mb-3">--}}
+{{--                <button type="button" class="btn btn-outline-primary btn-market dropdown-toggle" data-bs-toggle="dropdown">--}}
+{{--                    Go to Bazar--}}
+{{--                </button>--}}
+{{--                <ul class="dropdown-menu">--}}
+{{--                @foreach($bazars as $bazar)--}}
+{{--                    <li><a class="dropdown-item" href="{{ route('bazar.products', $bazar) }}">{{ $bazar->name }}</a></li>--}}
+{{--                @endforeach--}}
+{{--                </ul>--}}
+{{--                <input type="text" class="form-control" placeholder="Search items here">--}}
+{{--                <button class="btn btn-outline-primary btn-search" type="button">Search</button>--}}
+{{--            </div>--}}
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
                @foreach($products as $index => $product)
                     <div class="col mb-5">

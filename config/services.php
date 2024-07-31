@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'bazar' => [
+        \App\Providers\BazarServiceProvider::class,
+    ],
+
 ];
