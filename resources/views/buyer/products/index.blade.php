@@ -28,17 +28,18 @@
                             @endforeach
                         </div>
                         <p class="lead">{{ $product->description }}</p>
-                        <div class="d-flex">
-                            <form action="{{ route('cart.add') }}" method="POST" class="d-flex">
-                                @csrf
-                                <input type="number" name="quantity" value="1" min="1" class="form-control text-center me-3" style="max-width: 3rem">
-                                <button type="submit" class="btn btn-outline-dark flex-shrink-0" id="add-to-cart-button"><i class="bi-cart-fill me-1"></i>Add to Cart</button>
-                                <input type="hidden" name="product[id]" value="{{ $product->id }}">
-                                <input type="hidden" name="product[name]" value="{{ $product->name }}">
-                                <input type="hidden" name="product[description]" value="{{ $product->description }}">
-                                <input type="hidden" name="product[price]" value="{{ $product->price }}">
-                            </form>
-                        </div>
+                        <!-- Add to Cart Button -->
+{{--                        <div class="d-flex">--}}
+{{--                            <form action="{{ route('cart.add') }}" method="POST" class="d-flex">--}}
+{{--                                @csrf--}}
+{{--                                <input type="number" name="quantity" value="1" min="1" class="form-control text-center me-3" style="max-width: 3rem">--}}
+{{--                                <button type="submit" class="btn btn-outline-dark flex-shrink-0" id="add-to-cart-button"><i class="bi-cart-fill me-1"></i>Add to Cart</button>--}}
+{{--                                <input type="hidden" name="product[id]" value="{{ $product->id }}">--}}
+{{--                                <input type="hidden" name="product[name]" value="{{ $product->name }}">--}}
+{{--                                <input type="hidden" name="product[description]" value="{{ $product->description }}">--}}
+{{--                                <input type="hidden" name="product[price]" value="{{ $product->price }}">--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>

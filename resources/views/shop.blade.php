@@ -7,23 +7,23 @@
 
 
     <!-- Header-->
-    <header class="bg-dark header-c-style">
-        <div class="container px-4 px-lg-5 my-3">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Shop in style</h1>
-                <p class="lead fw-normal text-white-50 mb-0">With this shop homepage template</p>
-            </div>
-        </div>
-    </header>
+{{--    <header class="bg-dark header-c-style">--}}
+{{--        <div class="container px-4 px-lg-5 my-3">--}}
+{{--            <div class="text-center text-white">--}}
+{{--                <h1 class="display-4 fw-bolder">Shop in style</h1>--}}
+{{--                <p class="lead fw-normal text-white-50 mb-0">With this shop homepage template</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </header>--}}
     <!-- Section-->
-    <section class="py-5">
+    <section class="py-3">
         <div class="container px-4 px-lg-5 market-width">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search items here">
                 <button class="btn btn-outline-primary btn-search" type="button">Search</button>
             </div>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
-               @foreach($products as $product)
+               @foreach($products as $index => $product)
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
@@ -34,7 +34,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ $product->name }}</h5>
                                     <!-- Product price-->
-                                    {{ $product->price }} UZS
+                                    {{ $formattedPrices[$index] }} UZS
                                 </div>
                                 <div class="text-center">
                                     <!-- Seller name -->

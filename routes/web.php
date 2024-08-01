@@ -28,9 +28,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/my-products', [ProductController::class, 'myProducts'])->name('my.products');
+    Route::get('product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+    Route::patch('product/{product}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+//    Route::get('/my_products', function () {
+//        return view('myproducts');
+//    })->name('myproducts');
 
     Route::middleware('is_admin')->group(function () {
         Route::resource('categories', CategoryController::class);

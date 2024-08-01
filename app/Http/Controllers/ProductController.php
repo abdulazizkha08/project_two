@@ -6,23 +6,29 @@ use App\Helpers\ProductHelper;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\User;
+use App\Models\Bazar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Nette\Utils\Image;
 
 class ProductController extends Controller
 {
-    public function show(Product $product)
+
+    public function myProducts()
     {
-        $prices = collect([$product->price]);
+        $user = Auth::user();
+        $products = $user->products; // Fetch products related to the logged-in user
+        $prices = $products->pluck('price');
         $formattedPrices = ProductHelper::formatPrices($prices);
 
-        return view('buyer.products.index', compact('product', 'formattedPrices'));
+        return view('myproducts', compact('user', 'products', 'formattedPrices'));
     }
 
-    public function getUserProducts(User $user)
+    public function create()
     {
-        $products = $user->products;
-        return view('shop', compact('user', 'products'));
+        $bazars = Bazar::all();
+
+        return view('seller.product.create', compact('bazars'));
     }
 
     public function store(Request $request)
@@ -61,6 +67,22 @@ class ProductController extends Controller
 
     }
 
+    public function show(Product $product)
+    {
+        $prices = collect([$product->price]);
+        $formattedPrices = ProductHelper::formatPrices($prices);
+
+        return view('buyer.products.index', compact('product', 'formattedPrices'));
+    }
+
+    public function edit(Product $product)
+    {
+        $bazars = Bazar::all();
+        $formattedPrice = ProductHelper::formatPrices(collect([$product->price]))->first();
+
+        return view('seller.products.edit', compact('product', 'bazars', 'formattedPrice'));
+    }
+
     public function update(Request $request, Product $product)
     {
         $request->validate([
@@ -78,7 +100,22 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('my.products')->with('success', 'Product updated successfully.');
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return redirect()->route('my.products')->with('success', 'Product deleted successfully.');
+    }
+
+    public function getUserProducts(User $user)
+    {
+        $products = $user->products;
+        $prices = $products->pluck('price');
+        $formattedPrices = ProductHelper::formatPrices($prices);
+        return view('shop', compact('user', 'products', 'formattedPrices'));
     }
 
     private function handleImageUpload($image)
