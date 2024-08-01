@@ -47,6 +47,28 @@
     font-size: xx-large !important;
 }
 
+/* Hide the default dropdown arrow */
+.no-arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent; /* Removes any background that may show the arrow */
+    position: relative; /* Create a position context */
+    padding-right: 1.5em; /* Adjust the padding to make room for custom icon if necessary */
+}
+
+/* Extra to handle browser-specific styling for disabled select */
+.no-arrow:disabled {
+    background-color: #e9ecef; /* Same background color as disabled input */
+    border: 1px solid #ced4da; /* Same border as disabled input */
+    color: #6c757d; /* Text color for disabled input */
+}
+
+/* Ensure to remove arrow for different browsers */
+.no-arrow::-ms-expand {
+    display: none; /* For IE10+ */
+}
+
 @media screen and (min-width: 1400px) {
     .market-width{
         max-width: 1800px;
@@ -57,4 +79,10 @@
     .overview-width {
         max-width: 1280px;
     }
+
+    .image-c-height{
+        max-height: 80%;
+        width: auto;
+    }
+
 }

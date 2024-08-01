@@ -18,6 +18,7 @@
         <!-- Custom Resources -->
         <link href="{{ asset ('/assets/custom.css') }}" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{{--        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>--}}
     </head>
     <body class="font-sans antialiased">
 {{--        <div class="min-h-screen bg-gray-100">--}}

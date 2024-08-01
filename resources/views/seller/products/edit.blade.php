@@ -8,32 +8,25 @@
     <!-- Product section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-3 overview-width">
-            <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="row gx-4 gx-lg-5">
                 <div class="col-md-6">
                     <!-- Display Product Image-->
                     @if($product->images->isNotEmpty())
-                        <img class="card-img-top mb-5 mb-md-0" src="{{ asset('storage/' . $product->images->first()->path) }}" alt="{{ $product->name }}">
+                        <img class="card-img-top mb-5 mb-md-0 image-c-height" src="{{ asset('storage/' . $product->images->first()->path) }}" alt="{{ $product->name }}">
                     @else
-                        <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="{{ $product->name }}">
+                        <img class="card-img-top mb-5 mb-md-0 image-c-height" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="{{ $product->name }}">
                     @endif
                 </div>
                 <div class="col-md-6">
-                    <!-- Display Product Details -->
-                    <h1 class="display-5 fw-bolder">{{ $product->name }}</h1>
-                    <div class="fs-5 mb-5">
-                        <span>{{ $formattedPrice }} UZS</span>
-                    </div>
-                    <p class="lead">{{ $product->description }}</p>
-
                     <!-- Edit Form -->
-                    <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
 
                         <!-- Bazar Selection -->
                         <div class="mb-3">
                             <label for="bazar" class="form-label">Bazar</label>
-                            <select id="bazar" name="bazar_id" class="form-select" disabled>
+                            <select id="bazar" name="bazar_id" class="form-select no-arrow" disabled>
                                 @foreach($bazars as $bazar)
                                     <option value="{{ $bazar->id }}" {{ $product->bazar_id == $bazar->id ? 'selected' : '' }}>{{ $bazar->name }}</option>
                                 @endforeach
@@ -49,7 +42,7 @@
                         <!-- Product Price -->
                         <div class="mb-3">
                             <label for="price" class="form-label">Price (UZS)</label>
-                            <input type="number" id="price" name="price" class="form-control" value="{{ $product->price }}" required>
+                            <input type="number" id="price" name="price" class="form-control" step="0.01" value="{{ $formattedPrice }}" required>
                         </div>
 
                         <!-- Product Description -->

@@ -10,6 +10,9 @@
         <div class="container px-4 px-lg-5 market-width">
             <!-- Search panel -->
             <div class="input-group mb-3">
+                <a type="button" class="btn btn-warning btn-market" href="{{ route('products.create') }}">
+                    <span class="fa fa-plus-square"></span> Add Product
+                </a>
                 <input type="text" class="form-control" placeholder="Search items here">
                 <button class="btn btn-outline-primary btn-search" type="button">Search</button>
             </div>
@@ -35,8 +38,8 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <a class="btn btn-outline-dark mt-auto" href="{{ route('product.edit', $product) }}">Edit</a>
-                                    <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                    <a class="btn btn-outline-dark mt-auto" href="{{ route('products.edit', $product) }}">Edit</a>
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>

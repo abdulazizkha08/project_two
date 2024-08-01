@@ -24,15 +24,24 @@ class ProductController extends Controller
         return view('myproducts', compact('user', 'products', 'formattedPrices'));
     }
 
-    public function create()
+    public function create(Product $product)
     {
         $bazars = Bazar::all();
 
-        return view('seller.product.create', compact('bazars'));
+        return view('seller.products.create', compact('bazars', 'product'));
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'description' => 'required',
+            'bazar_id' => 'required|exists:bazars,id',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ]);
+
         $product = Product::create($request->all());
 
         if ($request->hasFile('images')) {
@@ -43,29 +52,12 @@ class ProductController extends Controller
                     'path' => str_replace('public/', '', $path)
                 ]);
             }
-
-            //        $request->validate([
-//            'name' => 'required',
-//            'price' => 'required',
-//            'description' => 'required',
-//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
-//        ]);
-//
-//        $product = new Product($request->all());
-//
-//        if ($request->hasFile('image')) {
-//            $product->image = $this->handleImageUpload($request->file('image'));
-//        }
-//
-//        $product->save();
-//
-//        return redirect()->route('products.index')->with('success', 'Product added successfully.');
-
         }
 
-        return redirect()->route('products.index');
-
+        return redirect()->route('my.products')->with('success', 'Product added successfully.');
     }
+
+
 
     public function show(Product $product)
     {
@@ -78,9 +70,10 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $bazars = Bazar::all();
+        $selectedBazar = $bazars->firstWhere('id', $product->bazar_id);
         $formattedPrice = ProductHelper::formatPrices(collect([$product->price]))->first();
 
-        return view('seller.products.edit', compact('product', 'bazars', 'formattedPrice'));
+        return view('seller.products.edit', compact('product', 'bazars', 'formattedPrice', 'selectedBazar'));
     }
 
     public function update(Request $request, Product $product)
@@ -100,7 +93,10 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('my.products')->with('success', 'Product updated successfully.');
+        // Format the price before displaying
+        $formattedPrice = ProductHelper::formatPrices(collect([$product->price]))->first();
+
+        return redirect()->route('my.products')->with('success', 'Product updated successfully.')->with('formattedPrice', $formattedPrice);
     }
 
     public function destroy(Product $product)
