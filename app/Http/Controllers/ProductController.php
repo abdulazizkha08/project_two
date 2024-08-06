@@ -24,32 +24,43 @@ class ProductController extends Controller
         return view('myproducts', compact('user', 'products', 'formattedPrices'));
     }
 
-    public function create(Product $product)
+    public function create()
     {
-        $bazars = Bazar::all();
+        $user = auth()->user(); // Get the currently authenticated user
+        $bazar = $user->bazar;  // Get the bazar associated with the user
 
-        return view('seller.products.create', compact('bazars', 'product'));
+        $userId = auth()->id(); // Get the authenticated user ID
+
+        return view('seller.products.create', compact('bazar', 'userId'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+//        dd($request->all()); // This will dump the request data and stop execution
+
+        $validated = $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
             'description' => 'required',
-            'bazar_id' => 'required|exists:bazars,id',
+            'user_id' => 'required|exists:users,id',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
 
-        $product = Product::create($request->all());
+
+        // If validation passes, add a debug statement here
+//        dd('Validation passed');
+
+        \Log::info('Product Data:', $validated); // Log the validated data
+
+        $product = Product::create($validated);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('public/products');
                 ProductImage::create([
                     'product_id' => $product->id,
-                    'path' => str_replace('public/', '', $path)
+                    'path' => str_replace('public/', '', $path),
                 ]);
             }
         }

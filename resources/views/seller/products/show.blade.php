@@ -12,10 +12,10 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6">
                         <!-- Display Product Image-->
-                        @if($product->image)
-                            <img  src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }} " class="card-img-top mb-5 mb-md-0" <!--style="width: 200px; height: 200px;"-->>
+                        @if($product->images->isNotEmpty())
+                            <img src="{{ asset('storage/' . $product->images->first()->path) }}" alt="{{ $product->name }}" class="card-img-top mb-5 mb-md-0">
                         @else
-                            <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="...">
                         @endif
                     <div class="col-md-6">
                         <div class="small mb-1">{{ $product->id }}</div>

@@ -14,6 +14,18 @@
                     <img class="card-img-top mb-5 mb-md-0 image-c-height" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="Product Image">
                 </div>
                 <div class="col-md-6">
+
+                    <!-- Display Validation Errors -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <!-- Create Form -->
                     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -21,12 +33,11 @@
                         <!-- Bazar Selection -->
                         <div class="mb-3">
                             <label for="bazar" class="form-label">Bazar</label>
-                            <select id="bazar" name="bazar_id" class="form-select no-arrow" disabled>
-                                @foreach($bazars as $bazar)
-                                    <option value="{{ $bazar->id }}">{{ $bazar->name }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" id="bazar" name="bazar" class="form-control" value="{{ $bazar->name }}" readonly>
                         </div>
+
+                        <!-- User ID (hidden) -->
+                        <input type="hidden" name="user_id" value="{{ $userId }}">
 
                         <!-- Product Name -->
                         <div class="mb-3">

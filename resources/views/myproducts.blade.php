@@ -24,8 +24,11 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="{{ $product->images->first() ? asset('storage/' . $product->images->first()->path) : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg' }}" alt="{{ $product->name }}" />
-{{--                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />--}}
+                            @if($product->images->isNotEmpty())
+                                <img src="{{ asset('storage/' . $product->images->first()->path) }}" alt="{{ $product->name }}" class="card-img-top mb-5 mb-md-0">
+                            @else
+                                <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="...">
+                            @endif
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">

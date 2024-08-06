@@ -11,12 +11,9 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'description',
         'price',
-        'image',
-        'bazar_id',
-        'images',
-        'user_id'
+        'description',
+        'user_id',
     ];
 
     public function user()
